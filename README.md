@@ -157,17 +157,15 @@ Update the below to add what the group is using <<>>
     Don't be afraid to ask for help.
     Don't be afraid to give constructive criticism, as long as it is constructive.
     Solve roadblocks within the team. If the impediment can’t be solved within the team then give it to the Scrum Master.
-    Other
-    Sprints will start after the stand up that happens at the start of class each week.
-    The Scrum Master role rotates each week, the schedule is available on the on the process section
-    Poker Planner will be used for task management and planning.
-    Each member of the team will work approximitely 3 hours per week, unless they are on vacation.
-    Our branching stategy will start with gh then the issue number followed by wip
+    Sprints will start <<>>
+    The Scrum Master role rotates each week 
+    Each member of the team will work approximately <<hours>> hours per week, unless they are on vacation.
+    Our branching stategy will start with <<>>
 
 # Estimating Story Points
 The teams team's velocity is calculated by <<Team decides>>.
 
-The teams current story point velocity is "N/A".
+The teams current story point velocity is "N/A". <<Update the velocity as the weeks progress>>
 
-# Definition of Ready
+# Definition of Ready/Done
 <<List criteria that are common here>>
