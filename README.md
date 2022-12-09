@@ -38,7 +38,13 @@ Rotating scrum master so that everyone gets to experience the role once.
 Rotating product owner so that everyone gets to experience the role once.
 
 # Team Members
-<<list team member names here>>
+<<list team member names here
+       Chimezirim Ugochukwu
+       
+       
+       
+       
+       >>
 
 # Project Deadline
 Thursday 23rd March at midnight
