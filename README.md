@@ -30,22 +30,6 @@ Each team should fill in the blanks <<>> and add additional content that the tea
 Our product will be delivered using an Agile methodology that embraces the DevOps culture. Please note that our culture embraces change and these documents are treated as living, breathing artefacts that will be continuously updated.
 
 # Scrum Master
-Week	Name
-Week 1	Ankush Ikhar
-Week 2	Arun Jayarajan
-Week 3	Chimezirim Ugochukwu
-Week 4	Ganesh Gowdar
-Week 5	Manav Nim
-Week 6	Surendran Gopinathan
-Week 7	Tony Thomas
-Week 8	Vijaykumar Rajendran
-Week 9	Ankush Ikhar
-Week 10	Arun Jayarajan
-Week 11	Chimezirim Ugochukwu
-Week 12	Ganesh Gowdar
-Week 13	Manav Nim
-Week 14	Surendran Gopinathan
-Week 15	Tony Thomas
 ![image](https://user-images.githubusercontent.com/113892742/207569020-51f20f35-8a91-4a07-a2f5-045252345b79.png)
 
 Rotating scrum master so that everyone gets to experience the role once.
