@@ -1,0 +1,56 @@
+[
+    {
+        "id": 1,
+        "name": "Solar Premium Panels",
+        "description": "This is a global initiative not just limited to Ireland. A maximum of $100000 could be offered to legitimate request. Providers are specific about the needs. The request should only for solar power but no other alternatives",
+        "maxAmount": 1000
+    },
+    {
+        "id": 2,
+        "name": "Rotors by the Beach",
+        "description": "This is meant for wind power enthusiast who are keen to get mills installed near coastal areas.",
+        "maxAmount": 1000
+    },
+    {
+        "id": 3,
+        "name": "Super dynamos1",
+        "description": "A new invention by a bunch of graduate students. The insturment could be fitted into any automobile and could generated 10% more power than a conventional dynamo.",
+        "maxAmount": 1000
+    },
+    {
+        "id": 4,
+        "name": "Super dynamos2",
+        "description": "A new invention by a bunch of graduate students. The insturment could be fitted into any automobile and could generated 10% more power than a conventional dynamo.",
+        "maxAmount": 1000
+    },
+    {
+        "id": 5,
+        "name": "Super dynamos3",
+        "description": "A new invention by a bunch of graduate students. The insturment could be fitted into any automobile and could generated 10% more power than a conventional dynamo.",
+        "maxAmount": 1000
+    },
+    {
+        "id": 6,
+        "name": "Super dynamos4",
+        "description": "A new invention by a bunch of graduate students. The insturment could be fitted into any automobile and could generated 10% more power than a conventional dynamo.",
+        "maxAmount": 1000
+    },
+    {
+        "id": 7,
+        "name": "Super dynamos5",
+        "description": "A new invention by a bunch of graduate students. The insturment could be fitted into any automobile and could generated 10% more power than a conventional dynamo.",
+        "maxAmount": 1000
+    },
+    {
+        "id": 8,
+        "name": "Super dynamos6",
+        "description": "A new invention by a bunch of graduate students. The insturment could be fitted into any automobile and could generated 10% more power than a conventional dynamo.",
+        "maxAmount": 1000
+    },
+    {
+        "id": 9,
+        "name": "Super dynamos7",
+        "description": "A new invention by a bunch of graduate students. The insturment could be fitted into any automobile and could generated 10% more power than a conventional dynamo.",
+        "maxAmount": 1000
+    }
+]
