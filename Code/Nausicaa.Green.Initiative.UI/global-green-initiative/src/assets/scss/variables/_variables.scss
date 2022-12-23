@@ -1,0 +1,152 @@
+@import './colors';
+@import './images';
+@import '../functions/converter';
+
+
+$root-font-size         : .9vw; 
+$px                     : 16px;
+$line-height-base       : 1.3;
+$font-size-base         : $root-font-size;
+$font-weight-base       : 400;
+$font-family-regular    : 'EYInterstate-regular', Arial;
+$font-family-bold       : 'EYInterstate-regular', Arial;
+$font-family-medium     : 'EYInterstate-regular', Arial;
+$font-family-light      : 'EYInterstate-light', Arial;
+$font-family-base       : $font-family-regular;
+$font-path              : '/assets/fonts/';
+$image-base-url         : "/assets/images/";
+$retina                 : "(-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi)";
+
+$scroll-size            :  6px;
+$scroll-radius          :  10px;
+$scroll-track-color     :  transparent;
+
+$body-font-size         : pxToRem(16px);
+$body-text-align        : left;
+$body-padding-top       : pxToRem(80px);
+
+
+$heading-font-size      : (
+    h1                   : pxToRem(32px),
+    h2                   : pxToRem(28px),
+    h3                   : pxToRem(24px),
+    h4                   : pxToRem(20px),
+    h5                   : pxToRem(18px),
+    h6                   : pxToRem(16px)
+);   
+$headings-font-family   : $font-family-bold; 
+$headings-font-weight   : 600;
+$headings-line-height   : $line-height-base;
+$headings-color         : inherit;
+$headings-margin-top    : 0;    
+$headings-margin-bottom : 0;
+$paragraph-margin-top   : 0;
+$paragraph-margin-bottom: pxToRem(10px);
+
+
+$link-decoration        : none;
+$link-hover-decoration  : none;
+
+$ol-style               : initial;
+$ul-style               : initial;
+$list-margin            : 0 0 1rem 0;
+$list-padding           : 0 0 0 20px;
+
+$header-height          : pxToRem(80px);
+
+$container-width        : 1200px;
+$gutter                 : 15px;
+$grid-no                : 12;
+
+$card-bg                : $white;
+$card-radius            : 4px;  
+
+$input-height            : 2.81rem;;
+$input-padding-x         : .75rem;
+$input-padding-y         : .5rem;
+$input-font-family       : $font-family-regular;
+$input-font-weight       : 400;
+$input-font-size         : 1.125rem;
+$input-line-height       : 1.35em;
+$input-border-width      : 1px;
+$input-radius            : 4px;
+$input-box-shadow        : none;
+$input-outline           : none;
+$input-sizes              : (
+    lg                   : 1.15,
+    sm                   : 0.75,
+    xs                   : 0.65,
+);  
+$input-group-margin-bottom : 15px;
+$label-font-weight      : 200;
+$label-font-size        : 1rem;
+
+$radio-size             : pxToRem(30px);
+$radio-gutter           : 15px;
+
+$btn-font-weight        : 400;
+$btn-height             : $input-height;
+$btn-font-size          : $input-font-size ;
+$btn-line-height        : $input-line-height;
+$btn-radius             : .25rem;
+$btn-outline            : $input-outline;
+$btn-paading-x          : 1.25rem;
+$btn-paading-y          : $input-padding-y;
+$btn-sizes              : (
+    lg                   : 1.15,
+    sm                   : 0.75,
+    xs                   : 0.65,
+);  
+
+$popup-title-size       : pxToRem(22px);
+$pop-md                 : 580px;
+$pop-lg                 : 768px;
+$pop-radius             : 0;
+$pop-padding-x          : $gutter;
+$pop-padding-y          : $gutter;
+
+
+
+
+$icomoon-font-family        : "ey-icon";
+$icomoon-font-path          : $font-path;
+
+$icon-more: "\e900";
+$icon-wallet: "\e901";
+$icon-contact: "\e902";
+$icon-add: "\e903";
+$icon-add-circle: "\e904";
+$icon-resize: "\e905";
+$icon-bar-chart: "\e906";
+$icon-assignment: "\e907";
+$icon-assignment-tick: "\e908";
+$icon-edit: "\e909";
+$icon-delete: "\e90a";
+$icon-recycle: "\e90b";
+$icon-add-folder: "\e90c";
+$icon-board: "\e90d";
+$icon-equalizer: "\e90e";
+$icon-folder: "\e90f";
+$icon-folder-outline: "\e910";
+$icon-gamepad: "\e911";
+$icon-download: "\e912";
+$icon-close-circle: "\e913";
+$icon-list: "\e914";
+$icon-lock: "\e915";
+$icon-payment: "\e916";
+$icon-reply: "\e917";
+$icon-history: "\e918";
+$icon-map-pin: "\e919";
+$icon-search: "\e91a";
+$icon-users: "\e91b";
+$icon-track: "\e91c";
+$icon-grid: "\e91d";
+$icon-eye: "\e91e";
+$icon-arrow-left: "\e91f";
+$icon-arrow-right: "\e920";
+$icon-arrow-long-right: "\e921";
+$icon-arrow-up: "\e922";
+$icon-arrow-down: "\e923";
+$icon-flowchart: "\e924";
+$icon-tick: "\e925";
+$icon-replay: "\e926";
