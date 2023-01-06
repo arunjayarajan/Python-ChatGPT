@@ -1,0 +1,195 @@
+{
+	"info": {
+		"_postman_id": "b893928e-c884-43aa-adf9-6b7e41c2ca45",
+		"name": "Python-Backend",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "11927367"
+	},
+	"item": [
+		{
+			"name": "Create User",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/user?email_id=suasd@gmail.cpomsadsd&first_name=Surendran&last_name=Gopinathan&address=F97123123&password=CognitoCheck@17",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"user"
+					],
+					"query": [
+						{
+							"key": "email_id",
+							"value": "suasd@gmail.cpomsadsd"
+						},
+						{
+							"key": "first_name",
+							"value": "Surendran"
+						},
+						{
+							"key": "last_name",
+							"value": "Gopinathan"
+						},
+						{
+							"key": "address",
+							"value": "F97123123"
+						},
+						{
+							"key": "password",
+							"value": "CognitoCheck@17"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/login?email_id=surendran.charu17@gmail.com&password=CognitoCheck@17",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"login"
+					],
+					"query": [
+						{
+							"key": "email_id",
+							"value": "surendran.charu17@gmail.com"
+						},
+						{
+							"key": "first_name",
+							"value": "Surendran",
+							"disabled": true
+						},
+						{
+							"key": "last_name",
+							"value": "Gopinathan",
+							"disabled": true
+						},
+						{
+							"key": "address",
+							"value": "F97123123",
+							"disabled": true
+						},
+						{
+							"key": "password",
+							"value": "CognitoCheck@17"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "grant",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJraWQiOiJGK1ZcL3oxRk54OGlvR1Z1RElNcWxvdWtjSmJ4Q1ZvWnFEUmU4YXpnaVJwUT0iLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJhNjM1NDIxMy01NWNhLTRlYTUtYmM3Ny0wZGJhMTdiZTA4ZjIiLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtZWFzdC0xLmFtYXpvbmF3cy5jb21cL3VzLWVhc3QtMV91dHdkTHlBa1EiLCJjbGllbnRfaWQiOiIyc3YybTZhYW1hMDh2bmJ2YnFrZTBzZDM1cyIsIm9yaWdpbl9qdGkiOiJmOTllZTAxMS0yMGE0LTRhOGYtOWY5YS01OThhMjg3YTA1NWIiLCJldmVudF9pZCI6ImQ4MjkwZTc0LTdkNzItNDE1MS04YTJlLTYxNDYzYTY5YzRkZiIsInRva2VuX3VzZSI6ImFjY2VzcyIsInNjb3BlIjoiYXdzLmNvZ25pdG8uc2lnbmluLnVzZXIuYWRtaW4iLCJhdXRoX3RpbWUiOjE2NzI5NTU5OTYsImV4cCI6MTY3Mjk1OTU5NiwiaWF0IjoxNjcyOTU1OTk2LCJqdGkiOiIzMTU2ZWQzNy1kNzRiLTQwM2UtYTJkYS0xODEyMzIyMmU5ZDUiLCJ1c2VybmFtZSI6ImE2MzU0MjEzLTU1Y2EtNGVhNS1iYzc3LTBkYmExN2JlMDhmMiJ9.tqz0GTOwcucjTrX-AmQ_uQycMwIxccCYKgLo0z2ynm3ZSs5uNzPAFqwbjbDvUbGYa3tXUQc3SjfDhonG-nsFbwGpEpEriB921pKxQduDbM7GzseRpbYYlE9GmqVyTyOUj9_ODnTmWGEI3HeD_Vc3CTtIe_ENEouSuTCYpXItBPQMzg0GFMDu8TOe7M4XUQq3i3uo8KgdJe5PnYJZvCv-F_vWx6KEbO-TaL4SYGRgBMyoLPLWd4RuDrOaZsW8nQgUp6E9SvLZ7dNrptDVkDN7fW7ncV_B2Fnb0qADHqfPffG_7Ao2BvXU-97jHe7LCxKGRKiUjgh9BDkFubuBIT1DaQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/grants",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"grants"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create grant",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJraWQiOiJPN0FJWCtuVWEweEZJeDJlNTg1RzIza1VwM0Y5VFVGOSt2clNYZjN6cXZRPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiI1MTY2YWY2ZS02M2QyLTQ2ODItODc5Zi03MzE1Y2MxMzg0ZDIiLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtZWFzdC0xLmFtYXpvbmF3cy5jb21cL3VzLWVhc3QtMV9wN2hhU2FGOVoiLCJjbGllbnRfaWQiOiIyMzNna2J2ZjJxdWZxY2gxdjRkZHJocDJmNCIsIm9yaWdpbl9qdGkiOiIwMDQ3NmIwZi00YzEzLTQwODgtODJjOS1jYWMzZWNjZTAzOGQiLCJldmVudF9pZCI6IjEzNjU3NjBmLTMwNmYtNDJmMy05ZGRjLWJmZDM4YjU1M2EyZiIsInRva2VuX3VzZSI6ImFjY2VzcyIsInNjb3BlIjoiYXdzLmNvZ25pdG8uc2lnbmluLnVzZXIuYWRtaW4iLCJhdXRoX3RpbWUiOjE2NzE0MDI5MTUsImV4cCI6MTY3MTQwNjUxNSwiaWF0IjoxNjcxNDAyOTE1LCJqdGkiOiIxNTI4ZDY0Ny00MjY4LTQ0ZmMtOWRhZC04OWU3MzkxZDc1N2YiLCJ1c2VybmFtZSI6Imdva3UifQ.So4Dg9Gklx3NX3zqjBcDTybjTfSdbbAqVixW3IU54RwvG4XgAjCQgMqESgXRoUc0QA2JfEvA_IAQJMeimQ-rHwwN6dqKKVEDjw_KrlBgCkeFa0cqy7uqhni0kVlXAwb0GGrG1n9NEnliokqJ-HyDYkTubRbev4TOORmdSGU9tHjnnLuBNg-JIxKh8lI5w1-swVqTZ_LJfwiP6pcASH3hDM6czz7-JXfaOO8nJF3Vlbr8NSIqLLF1CwaGs6ARzoErJRYdJegVnJtKdhduU0H7O2YuymFdt-zikLA4WvYldJFF7QOCHwG9BzHzDCSYcxd8DvfYCQs3BOdPzGtPb5sdDw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJraWQiOiJPN0FJWCtuVWEweEZJeDJlNTg1RzIza1VwM0Y5VFVGOSt2clNYZjN6cXZRPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiI1MzQ0NmQ0MS0zNWE1LTQ4MjYtYTcwOS03NGQ0ODczMjIzYWEiLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtZWFzdC0xLmFtYXpvbmF3cy5jb21cL3VzLWVhc3QtMV9wN2hhU2FGOVoiLCJjbGllbnRfaWQiOiIyMzNna2J2ZjJxdWZxY2gxdjRkZHJocDJmNCIsIm9yaWdpbl9qdGkiOiIxNzI5ODllMC0zZmUzLTQ0MzUtYWYzNS03MzIyY2RmODZkMDEiLCJldmVudF9pZCI6ImNlY2YyYzQwLTc5NWQtNDk4ZS05NmIyLTE2ZTU1MjJlYjU0ZCIsInRva2VuX3VzZSI6ImFjY2VzcyIsInNjb3BlIjoiYXdzLmNvZ25pdG8uc2lnbmluLnVzZXIuYWRtaW4iLCJhdXRoX3RpbWUiOjE2NzA5MzQ5MzIsImV4cCI6MTY3MDkzODUzMiwiaWF0IjoxNjcwOTM0OTMyLCJqdGkiOiJlOWE1ZmQ0ZC1jMzZhLTQxYmMtYjcyMy1hMGI3NTYzNWM0M2IiLCJ1c2VybmFtZSI6InN1cmVuZHJhbiJ9.o7p9Ee9yFMx8fYYyuSzmMuNA42hMEcXD5IFVwMYwRIbGP7XWPgZ0l9vQXv1-cnu9TyytWioZpMHu5RFC3QGrGdFsJoxBHs3D4IuNJRgyjROeIxLNFf9CSOvcuyhA6iu_XM2GruCxLzDttsxlFQUBE5ojII-iSa9d9nEB6jszzfTL1ZM_fMgCDfVKgTGO0kvJcn1zEllF7cFAw4XdUuZBKDYIxU2ximB5Lj_xEcwHKsBIWFOP7AUoiLxP__UGVLmvKAodycGpe4dnzE9TdHfbe_etKHHmhIRCNnFz7GDDgqlOA7TTdZXTt0rPK_ACS_uQj5sBE1pn1WjabZOtoY2UfQ",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "",
+						"value": "",
+						"type": "text"
+					},
+					{
+						"key": "",
+						"value": "",
+						"type": "text"
+					},
+					{
+						"key": "granted_flag",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "grantee_email",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:5000/grants?org=jumper.org&fund=1900",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"grants"
+					],
+					"query": [
+						{
+							"key": "org",
+							"value": "jumper.org"
+						},
+						{
+							"key": "fund",
+							"value": "1900"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
