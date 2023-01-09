@@ -16,10 +16,6 @@ const routes: Routes = [
     component: ProfileComponent,
   },
   {
-    path: 'signIn',
-    component: SignInComponent,
-  },
-  {
     path: 'signUp',
     component: SignUpComponent,
   },

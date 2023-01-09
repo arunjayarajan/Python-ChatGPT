@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CONSTANTS } from '../constants';
-import { ApplyGrant } from '../models/apply-grant.model';
 import { Grant } from '../models/grant.model';
 import { Toast } from '../models/toast.model';
 import { GrantService } from '../services/grant.service';
@@ -18,8 +17,9 @@ export class GrantListComponent implements OnInit {
   loading: boolean = false;
   grants: Grant[] = [];
   selectedGrant: Grant = new Grant();
+  isLoggedIn: boolean = false;
   applyGrantPop = {
-    size: '50',
+    size: '70',
     show: false
   };
 
@@ -39,6 +39,8 @@ export class GrantListComponent implements OnInit {
       if(firstSignIn === 'true' && token === null){
         this.signInService.sendSignInEvent();
       }
+
+      this.isLoggedIn = token != null;
     });
   }
 
@@ -47,8 +49,6 @@ export class GrantListComponent implements OnInit {
     this.grantService.ListGrants().subscribe({
       next: (grants: Grant[]) => {
         this.grants = grants;
-        let toastModel: Toast = { title: 'Success', message: 'Fetched grjtts!', colour: CONSTANTS.blueColour, show:'show'};
-        this.toastService.sendToastEvent(toastModel);
         console.log(this.grants);
       },
       error: (error) => {
