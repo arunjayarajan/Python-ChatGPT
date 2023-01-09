@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ApplyGrantComponent } from './apply-grant.component';
+import { RequestGrantComponent } from './request-grant.component';
 
 describe('ApplyGrantComponent', () => {
-  let component: ApplyGrantComponent;
-  let fixture: ComponentFixture<ApplyGrantComponent>;
+  let component: RequestGrantComponent;
+  let fixture: ComponentFixture<RequestGrantComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ApplyGrantComponent ]
+      declarations: [ RequestGrantComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ApplyGrantComponent);
+    fixture = TestBed.createComponent(RequestGrantComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
