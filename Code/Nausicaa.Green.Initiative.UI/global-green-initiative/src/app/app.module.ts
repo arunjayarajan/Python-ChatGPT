@@ -12,7 +12,7 @@ import { FormsModule } from '@angular/forms';
 import { GrantListComponent } from './grant-list/grant-list.component';
 import { PopupComponent } from './popup/popup.component';
 import { ToastComponent } from './toast/toast.component';
-import { ApplyGrantComponent } from './apply-grant/apply-grant.component';
+import { RequestGrantComponent } from './request-grant/request-grant.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +23,7 @@ import { ApplyGrantComponent } from './apply-grant/apply-grant.component';
     GrantListComponent,
     PopupComponent,
     ToastComponent,
-    ApplyGrantComponent
+    RequestGrantComponent
   ],
   imports: [
     BrowserModule,
