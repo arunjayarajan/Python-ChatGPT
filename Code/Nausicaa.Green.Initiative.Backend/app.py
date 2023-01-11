@@ -6,15 +6,15 @@ import os
 
 #Creating Env variables for now
 #Boto3 IAM User creds
-os.environ['AWS_ACCESS_KEY_ID'] = 'AKIAZFYBK7LREBFIY26J'
-os.environ['AWS_SECRET_ACCESS_KEY'] = '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'
+os.environ['AWS_ACCESS_KEY_ID'] = 'SECRET_KEY'
+os.environ['AWS_SECRET_ACCESS_KEY'] = 'SECRET_ACCESS_KEY'
 os.environ['AWS_DEFAULT_REGION'] = 'us-east-1'
 
 # DynamoDB Variables
 user_table = "user"
 user_Primary_Column = 'email_id'
 grant_table = "grant"
-grant_Primary_Column = 'name'
+grant_Primary_Column = 'grant_id'
 columns=["name","desc","max_amount"]
 
 #Cognito Variables
