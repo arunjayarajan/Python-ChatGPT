@@ -1,8 +1,14 @@
 from flask import Flask,request, jsonify, make_response
 import cognitojwt
 from functools import wraps
-from pymongo import MongoClient
 import boto3
+import os
+
+#Creating Env variables for now
+#Boto3 IAM User creds
+os.environ['AWS_ACCESS_KEY_ID'] = 'AKIAZFYBK7LREBFIY26J'
+os.environ['AWS_SECRET_ACCESS_KEY'] = '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'
+os.environ['AWS_DEFAULT_REGION'] = 'us-east-1'
 
 # DynamoDB Variables
 user_table = "user"
@@ -16,6 +22,8 @@ clientId="2sv2m6aama08vnbvbqke0sd35s"
 userPoolId ="us-east-1_utwdLyAkQ"
 
 
+# ACCESS_KEY= os.getenv('AWS_ACCESS_KEY_ID')
+# SECRET_KEY=os.getenv('AWS_SECRET_ACCESS_KEY')
 
 app = Flask(__name__)
 
@@ -40,90 +48,45 @@ def createUser():
     first_name = args.get('first_name')
     last_name = args.get('last_name')
     address = args.get('address')
-    password = args.get('password')
     
     try:
-        client = boto3.client('cognito-idp')
+        DB = boto3.resource(
+            'dynamodb')
         
-        response = client.sign_up(
-        ClientId=clientId,
-        username= email_id,
-        password= password
+        table = DB.Table(user_table)
+        response = table.put_item(
+            Item={
+                'email_id': email_id,
+                'first_name': first_name,
+                'last_name':last_name,
+                'address':address
+            }
         )
     except Exception as e:
         response=[]
         message="{}".format(e)
         status=400
     else:
-        try:
-            DB = boto3.resource('dynamodb')
-            
-            table = DB.Table(user_table)
-            response = table.put_item(
-                Item={
-                    'email_id': email_id,
-                    'first_name': first_name,
-                    'last_name':last_name,
-                    'address':address
-                }
-            )
-        except Exception as e:
-            response=[]
-            message="{}".format(e)
-            status=400
-        else:
-            response={
-                    'email_id': email_id,
-                    'first_name': first_name,
-                    'last_name':last_name,
-                    'address':address
-                }
-            message="User Created Successfully"
-            status=200
+        response={
+                'email_id': email_id,
+                'first_name': first_name,
+                'last_name':last_name,
+                'address':address
+            }
+        message="User Created Successfully"
+        status=200
         
     return make_response(jsonify(
                         message=message,
                         data=response),
                         status
                     )
-    
-@app.route("/login",methods = ['GET'])
-def login():
-    args = request.args
-    email_id = args.get('email_id')
-    password = args.get('password')
-    
-    client = boto3.client('cognito-idp')
-    try:
-        response = client.initiate_auth(
-        ClientId= clientId,
-        AuthFlow='USER_PASSWORD_AUTH',
-        AuthParameters={
-        'USERNAME': email_id,
-        'PASSWORD': password
-            }
-            )
-    # except client.exceptions.NotAuthorizedException as e:
-    #     data="{}".format(e)
-    #     message="User login unsuccessful"
-    except Exception as e:
-        data="{}".format(e)
-        message="User login unsuccessful"
-        status=400
-    else:
-        data=response['AuthenticationResult']  
-        message="User login successful"
-        status=200
-    return make_response(jsonify(
-                        message=message,
-                        data=data),
-                        status
-                    )
 
 @app.route("/grants",methods = ['GET'])
 @decorator
 def getGrants():
-    DB =     boto3.resource('dynamodb')
+    DB =     boto3.resource(
+            'dynamodb')
     table = DB.Table(grant_table)
     response = table.scan()
     output = response["Items"]
@@ -132,6 +95,39 @@ def getGrants():
                     data=output),
                     200
                 )
+    
+# @app.route("/login",methods = ['GET'])
+# def login():
+#     args = request.args
+#     email_id = args.get('email_id')
+#     password = args.get('password')
+    
+#     client = boto3.client('cognito-idp')
+#     try:
+#         response = client.initiate_auth(
+#         ClientId= clientId,
+#         AuthFlow='USER_PASSWORD_AUTH',
+#         AuthParameters={
+#         'USERNAME': email_id,
+#         'PASSWORD': password
+#             }
+#             )
+#     # except client.exceptions.NotAuthorizedException as e:
+#     #     data="{}".format(e)
+#     #     message="User login unsuccessful"
+#     except Exception as e:
+#         data="{}".format(e)
+#         message="User login unsuccessful"
+#         status=400
+#     else:
+#         data=response['AuthenticationResult']  
+#         message="User login successful"
+#         status=200
+#     return make_response(jsonify(
+#                         message=message,
+#                         data=data),
+#                         status
+#                     )
 
 # @app.route("/grants",methods = ['POST'])
 # # @decorator
