@@ -18,4 +18,3 @@ RUN touch /var/run/nginx.pid && \
 USER www-data
 # Expose required port from nginx config
 EXPOSE 3000
-EXPOSE 1004
