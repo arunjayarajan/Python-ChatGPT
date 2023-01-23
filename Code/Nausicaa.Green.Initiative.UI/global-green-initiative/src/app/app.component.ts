@@ -26,6 +26,8 @@ export class AppComponent implements OnInit {
     message: ''
   };
 
+  isolatedRoute: boolean = false;
+
   constructor(private router: Router,
     private cognitoService: CognitoService,
     private signInService: SignInService,
@@ -46,6 +48,17 @@ export class AppComponent implements OnInit {
       .then((success: boolean) => {
         this.isAuthenticated = success;
       });
+
+    let isolatedRoutes: string[] = ['disclaimer','cookies','privacy','terms'];
+    let path = window.location.pathname;
+
+    this.isolatedRoute = isolatedRoutes.some(element => {
+      if (path.includes(element)) {
+        return true;
+      }
+      return false;
+    });
+
   }
 
   public signOut(): void {
@@ -61,7 +74,10 @@ export class AppComponent implements OnInit {
     this.signInPop.show = false;
     this.isAuthenticated = e.signInStatus;
     console.log(`Sign in status: ${e.signInStatus}`);
-    window.location.reload();
+
+    if(e.signInStatus === false){
+      this.showToast('SignIn Failed', 'Something went wrong!', CONSTANTS.redColour);
+    }
   }
 
   showSignIn(): void {

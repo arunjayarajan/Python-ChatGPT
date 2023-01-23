@@ -1,6 +1,6 @@
 export class GrantRequest {
     id: number;
-    grantId: number;
+    grant_id: number;
     amount: number;
     summary: string;
     date: Date;
@@ -8,7 +8,7 @@ export class GrantRequest {
 
     constructor() {
         this.id = 0;
-        this.grantId = 0;
+        this.grant_id = 0;
         this.amount = 0;
         this.summary = '';
         this.date = new Date();
