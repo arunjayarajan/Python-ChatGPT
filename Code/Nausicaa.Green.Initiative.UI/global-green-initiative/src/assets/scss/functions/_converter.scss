@@ -1,0 +1,12 @@
+// main: ../styles.scss
+
+$px   : 14px !default; // root font-size variable
+
+
+
+// pixel to rem conversion
+@function pxToRem($size) {
+  $remSize: $size / $px;
+  @return #{$remSize}rem;
+}
+

@@ -1,0 +1,82 @@
+$black                  : #000;
+$white                  : #fff;
+$primary                : #FFE600;
+$primary-100            : rgba($primary, 0.15);
+$primary-200            : rgba($primary, 0.3);
+$primary-300            : rgba($primary, 0.5);
+$info                   : #1777CF;
+$info-800               : #0c6d6d ;
+$success                : #33C568;
+$warning                : #FF8C1D;
+$danger                 : #FF4136;
+$gray                   : #2E2E38;
+$gray-900               : #19191f;
+$gray-800               : #1C1C22; 
+$gray-700               : #1e1e25;
+$gray-600               : #25252d;
+$gray-500               : #43434e;
+$gray-400               : #51515C;
+$gray-300               : #747480;
+$gray-200               : #EFEFEF;
+$gray-100               : #FEFEFE; 
+$ash                    : #F6F6FA; 
+$ash-100                : #C4C4CD; 
+$ash-200                : #747480;
+$blue: #178ae4;
+
+$colors                 : (
+    gray        : $gray,
+    gray-900    : $gray-900,
+    gray-800    : $gray-800,
+    gray-700    : $gray-700,
+    gray-600    : $gray-600,
+    gray-500    : $gray-500,
+    gray-400    : $gray-400,
+    gray-300    : $gray-300,
+    gray-200    : $gray-200,
+    gray-100    : $gray-100,
+    primary     : $primary,
+    primary-100 : $primary-100,
+    primary-200 : $primary-200,
+    primary-300 : $primary-300,
+    info        : $info,
+    info-800    : $info-800,
+    success     : $success,
+    warning     : $warning,
+    danger      : $danger,
+    black       : $black,
+    white       : $white, 
+    ash         : $ash, 
+    ash-100     : $ash-100, 
+    ash-200     : $ash-200
+);
+
+$scroll-thumb-color     : #5D5D5D;
+$text-color-base        : #2E2E38;
+$body-bg                : $ash;
+$body-color             : $text-color-base;
+$link-color             : #000;
+$link-hover-color       : #555;
+
+$btn-default-bg         : $primary;
+$btn-default-color      : $black;
+$btn-default-hover-bg   : $primary;
+$btn-default-hover-color: $black;
+
+$input-color            : $gray;
+$placeholder-color      : $gray-400 ;
+$input-border-color     : #C4C4CD;
+$input-bg               : $white;
+$label-color            : inherit;
+
+$dropdown-bg            : #EFEFEF;
+$dropdown-color         : #333 ;
+$dropdown-border-color  : #aaa;
+$dropdown-hover-bg      : #eee;
+$dropdown-hover-color   : #555;
+
+
+$overlay-bg             : rgba($black, 0.6);
+$popup-bg               : $white;
+$popup-color            : $gray;
+$page-bg: #f3f3f8;

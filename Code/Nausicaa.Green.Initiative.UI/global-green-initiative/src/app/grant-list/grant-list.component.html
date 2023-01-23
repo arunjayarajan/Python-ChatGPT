@@ -1,0 +1,31 @@
+<div class="container">
+<div class="row justify-content-center my-4">
+    <div class="accordion" id="grantlists">
+        <div class="accordion-item" *ngFor="let grant of grants">
+            <h2 class="accordion-header" id="headingOne">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    [attr.data-bs-target]="'#collapse' + grant.id" aria-expanded="false"
+                    [attr.aria-controls]="'collapse' + grant.id">
+                    {{grant.name}}
+                </button>
+            </h2>
+            <div id="collapse{{grant.id}}" class="accordion-collapse collapse" aria-labelledby="headingOne"
+                data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <div class="row">
+                        <div>{{grant.description}}</div>
+                    </div>
+                    <div class="row" *ngIf="isLoggedIn">
+                        <div class="col-md-1">
+                            <button type="button" (click)="applyGrantShow(grant)" class="btn btn-success btn-sm">Apply</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<app-popup [data]="applyGrantPop">
+    <app-request-grant [grant]="selectedGrant" (dataEmit)="appliedGrant($event)"></app-request-grant>
+</app-popup>
