@@ -25,6 +25,7 @@ jobs:
     defaults: 
       run:
         working-directory: Code/Nausicaa.Green.Initiative.UI/global-green-initiative
+        branches: '${{ github.event.inputs.branch }}'
     steps:
     - name: Setup Node.js environment
       uses: actions/setup-node@v3.5.1
