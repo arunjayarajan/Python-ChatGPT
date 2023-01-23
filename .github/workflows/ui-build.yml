@@ -9,6 +9,14 @@ on:
         description: Bump Version
         default: v1.0.0
         required: true
+      branch:
+        description: Branch to trigger build on
+        default: develop
+        required: true
+        type: choice
+        options:
+        - develop
+        - main
   
 jobs:
   build:
