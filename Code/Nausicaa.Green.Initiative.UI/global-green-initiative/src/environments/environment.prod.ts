@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://localhost:7279/',
+  apiUrl: 'https://backend.tecminal.com/',
 
   cognito:{
     userPoolId:"us-east-1_HOKPXkW1F",
