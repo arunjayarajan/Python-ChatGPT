@@ -1,13 +1,13 @@
 export class Grant {
-    id: number;
+    grant_id: number;
     name: string;
-    description: string;
+    desc: string;
     //maxAmount: number;
 
     constructor() {
-        this.id = 0;
+        this.grant_id = 0;
         this.name = '';
-        this.description = '';
+        this.desc = '';
         //this.maxAmount = 0;
     }
 }

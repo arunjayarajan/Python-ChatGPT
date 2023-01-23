@@ -44,10 +44,10 @@ export class ProfileComponent implements OnInit {
 
     //api update
     let names = this.user.name.split(' ');
-    this.currentUser.firstName = names[0];
+    this.currentUser.first_name = names[0];
 
-    if(names.length > 1){this.currentUser.lastName = names[1];}
-    this.currentUser.emailId = this.user.email;
+    if(names.length > 1){this.currentUser.last_name = names[1];}
+    this.currentUser.email_id = this.user.email;
     console.log(this.currentUser);
   }  
 }

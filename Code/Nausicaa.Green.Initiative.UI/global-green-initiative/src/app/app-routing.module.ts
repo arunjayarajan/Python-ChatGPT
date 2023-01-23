@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { GrantListComponent } from './grant-list/grant-list.component';
 import { ProfileComponent } from './profile/profile.component';
-import { SignInComponent } from './sign-in/sign-in.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
+import { CookiesComponent, DisclaimerComponent, PrivacyComponent, TermsComponent } from './static-pages/static-pages.component';
 
 const routes: Routes = [
   {
@@ -22,6 +22,22 @@ const routes: Routes = [
   {
     path: 'grantList',
     component: GrantListComponent,
+  },
+  {
+    path: 'disclaimer',
+    component: DisclaimerComponent,
+  },
+  {
+    path: 'terms',
+    component: TermsComponent,
+  },
+  {
+    path: 'privacy',
+    component: PrivacyComponent,
+  },
+  {
+    path: 'cookies',
+    component: CookiesComponent,
   },
   {
     path: '**',

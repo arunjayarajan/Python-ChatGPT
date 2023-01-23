@@ -1,17 +1,19 @@
 <div class="row justify-content-center my-5">
       <div class="card">
+        <form [formGroup]="signInForm">
         <div class="card-body">
           <div class="row">
-            <div class="col mb-2">
+            <div class="col mb-2 form-group">
               <label for="email" class="form-label">Email:</label>
-              <input type="email" id="email" name="email" #email="ngModel" [(ngModel)]="user.email" class="form-control form-control-sm">
+              <input formControlName="email" type="email" id="email" name="email" class="form-control form-control-sm" [ngClass]="{'is-invalid':submitted && signInForm.controls['email'].errors}">
             </div>
           </div>
           <div class="row">
             <div class="col mb-2">
               <label for="password" class="form-label">Password:</label>
               <div class="input-group input-group-sm">
-                <input [type]="user.showPassword ? 'text' : 'password'" id="password" name="password" #password="ngModel" [(ngModel)]="user.password" class="form-control form-control-sm">
+                <input formControlName="password" [type]="user.showPassword ? 'text' : 'password'" id="password" name="password" class="form-control form-control-sm"
+                  [ngClass]="{'is-invalid':submitted && signInForm.controls['password'].errors}" (keydown.enter)="signIn()">
                 <button type="button" class="btn btn-outline-secondary" (click)="user.showPassword = !user.showPassword">
                   <i class="bi" [ngClass]="{'bi-eye-fill': !user.showPassword, 'bi-eye-slash-fill': user.showPassword}"></i>
                 </button>
@@ -19,13 +21,14 @@
             </div>
           </div>
           <div class="row">
-            <div class="col d-grid">
-              <button type="button" (click)="signIn()" class="btn btn-sm btn-success" [disabled]="loading">
+            <div class="col d-grid form-group">
+              <button type="button" (click)="signIn()" class="btn btn-sm btn-success " [disabled]="loading">
                 <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" *ngIf="loading"></span>
                 Sign in
               </button>
             </div>
           </div>
         </div>
+      </form>
       </div>
   </div>

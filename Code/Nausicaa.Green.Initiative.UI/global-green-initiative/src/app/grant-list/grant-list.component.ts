@@ -32,10 +32,18 @@ export class GrantListComponent implements OnInit {
   ngOnInit(): void {
     this.getGrants();
 
+    // listen to sigendIn event; after setting token
+    this.signInService.getSignedInEvent().subscribe((e: boolean) => {
+      this.isLoggedIn = true;
+    })
+
+    // listen to query string parameters
     this.activatedRoute.queryParams.subscribe((params) => {
       let firstSignIn = params[CONSTANTS.firstSignIn];
 
       let token = localStorage.getItem(CONSTANTS.token);
+
+      // If the user is newly registered, prompt signin
       if(firstSignIn === 'true' && token === null){
         this.signInService.sendSignInEvent();
       }
@@ -67,6 +75,6 @@ export class GrantListComponent implements OnInit {
   }
 
   appliedGrant(e: any){
-    console.log(e);
+    this.applyGrantPop.show = false;
   }
 }
