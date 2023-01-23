@@ -30,7 +30,8 @@ Each team should fill in the blanks <<>> and add additional content that the tea
 Our product will be delivered using an Agile methodology that embraces the DevOps culture. Please note that our culture embraces change and these documents are treated as living, breathing artefacts that will be continuously updated.
 
 # Scrum Master
-<<list week number, student name>>
+![image](https://user-images.githubusercontent.com/113892742/207569020-51f20f35-8a91-4a07-a2f5-045252345b79.png)
+
 Rotating scrum master so that everyone gets to experience the role once.
 
 # Product Owner
