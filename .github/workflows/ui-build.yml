@@ -76,4 +76,4 @@ jobs:
       run: docker tag nausicaa:v1 tonymathewt/nausicaa:v1
       
     - name: Docker Push
-      run: docker push tonymathewt/nausicaa
+      run: docker push tonymathewt/nausicaa:v1
