@@ -1,0 +1,119 @@
+name: Build Front-End Image
+
+on:
+  push:
+    paths:
+      - "Code/Nausicaa.Green.Initiative.UI/**"
+  release:
+    types: [created]
+  workflow_dispatch:
+    inputs:
+      version:
+        description: Bump Version
+        default: v1.0.0
+        required: true
+      branch:
+        description: Branch to trigger build on
+        default: develop
+        required: true
+        type: choice
+        options:
+        - develop
+        - main
+
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Build Angular Image
+    defaults: 
+      run:
+        working-directory: Code/Nausicaa.Green.Initiative.UI/global-green-initiative
+    
+      
+
+    steps:
+    - id: install-aws-cli
+      uses: unfor19/install-aws-cli-action@v1
+      with:
+        version: 2     # default
+        verbose: false # default
+        arch: amd64    # allowed values: amd64, arm64
+        rootdir: ""    # defaults to "PWD"
+        workdir: ""    # defaults to "PWD/unfor19-awscli"
+
+    - name: Setup Node.js environment
+      uses: actions/setup-node@v3.5.1
+      with:
+        node-version: 16.14.2
+        
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Self sast-scan
+      uses: AppThreat/sast-scan-action@v1.0.0
+      with:
+        output: frontend_report.html
+        type: nodejs,java,credscan,depscan
+      env:
+        SCAN_ID: ${{ github.sha }}
+        WORKSPACE: https://github.com/${{ github.repository }}/blob/${{ github.sha }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  
+        
+    - name: Upload scan reports
+      uses: actions/upload-artifact@v2
+      with:
+        name: sast-scan-reports
+        path: frontend_report.html   
+    
+    - name: Cache node modules
+      id: cache-nodemodules
+      uses: actions/cache@v2
+      env:
+        cache-name: cache-node-modules
+      with:
+        # caching node_modules
+        path: node_modules
+        key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-build-${{ env.cache-name }}-
+          ${{ runner.os }}-build-
+          ${{ runner.os }}-
+          
+          
+    - name: Install Angular
+      #if: steps.cache-nodemodules.outputs.cache-hit != 'true'
+      run: |
+        npm ci
+        
+    - name: Build Angular
+      run: |
+        npm run ng build --configuration=production
+        
+    #- name: Test
+      #run: |
+      #  npm run test --configuration=production
+
+      
+    - name: AWS Configure
+      run: |
+        aws configure set aws_access_key_id ${{secrets.AWS_ACCESS_KEY_ID}}  
+        aws configure set aws_secret_access_key ${{secrets.AWS_SECRET_ACCESS_KEY}} 
+        aws configure set region ${{secrets.AWS_REGION}} 
+        aws configure list 
+      
+    - name: Docker Login
+      run: aws ecr get-login-password --region eu-west-1 | docker login --username AWS --password-stdin 404463546753.dkr.ecr.eu-west-1.amazonaws.com
+      
+    - name: Build Image
+      run: |
+        docker build -t nausica-trial .
+      
+    - name: Tag and Push Docker Image
+      run: |
+        IMAGE_TAG=$(date +'%Y%m%d%H%M%S')
+        docker tag nausica-trial:latest 404463546753.dkr.ecr.eu-west-1.amazonaws.com/nausica-trial:$IMAGE_TAG
+        docker push 404463546753.dkr.ecr.eu-west-1.amazonaws.com/nausica-trial:$IMAGE_TAG
+
+   
+  
