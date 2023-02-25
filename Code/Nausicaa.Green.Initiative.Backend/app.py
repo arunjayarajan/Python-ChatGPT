@@ -29,7 +29,7 @@ loggedInUsername = ''
 # SECRET_KEY=os.getenv('AWS_SECRET_ACCESS_KEY')
 
 app = Flask(__name__)
-cors = CORS(app, resources={r"/*": {"origins": "http://localhost:4200"}})   # Allow in localhost while running locally
+cors = CORS(app, resources={r"/*": {"origins": ["https://atu.tecminal.com", "http://localhost:4200"]}})   # Allow CORS for relevent sources
 
 def decorator(takes_a_function):
     @wraps(takes_a_function)

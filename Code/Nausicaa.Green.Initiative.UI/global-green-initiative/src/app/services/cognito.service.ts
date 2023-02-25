@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { Auth, Amplify } from 'aws-amplify';
 import { environment } from 'src/environments/environment';
 import { CONSTANTS } from '../constants';
@@ -27,6 +27,11 @@ export class CognitoService {
     this.authenticationSubject = new BehaviorSubject<boolean>(false);
   }
 
+    // Meant for subscribers to capture post-signin
+    getCognitoEvent(): Observable<any>{
+      return this.authenticationSubject.asObservable();
+    }
+
   public signUp(user: IUser): Promise<any> {
     return Auth.signUp({
       username: user.email,
@@ -41,8 +46,13 @@ export class CognitoService {
   public signIn(user: IUser): Promise<any> {
     return Auth.signIn(user.email, user.password)
       .then(() => {
-        this.SetAccessToken().then(()=>{});
-        this.authenticationSubject.next(true);
+        this.SetAccessToken()
+        .then(()=> {
+          this.authenticationSubject.next(true); 
+          console.log('Access Token set');})
+        .catch(() => {
+          this.authenticationSubject.next(true);
+        });;        
       });
   }
 

@@ -9,6 +9,14 @@ on:
         description: Bump Version
         default: v1.0.0
         required: true
+      branch:
+        description: Branch to trigger build on
+        default: develop
+        required: true
+        type: choice
+        options:
+        - develop
+        - main
   
 jobs:
   build:
@@ -17,6 +25,7 @@ jobs:
     defaults: 
       run:
         working-directory: Code/Nausicaa.Green.Initiative.UI/global-green-initiative
+  
     steps:
     - name: Setup Node.js environment
       uses: actions/setup-node@v3.5.1
@@ -64,7 +73,7 @@ jobs:
       run: docker build -t nausicaa:v1 --force-rm .
       
     - name: Docker Tag
-      run: docker tag nausicaa:v1 tonymathewt/nausicaa
+      run: docker tag nausicaa:v1 tonymathewt/nausicaa:v2
       
     - name: Docker Push
-      run: docker push tonymathewt/nausicaa
+      run: docker push tonymathewt/nausicaa:v2
