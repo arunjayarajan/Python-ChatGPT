@@ -157,13 +157,36 @@ def getGrants():
             'dynamodb')
     table = DB.Table(grant_table)
 
-    response = table.scan()
+    response = table.scan(
+     FilterExpression = 'user_granted = :i',
+     ExpressionAttributeValues = {':i' : ''}
+    )
     output = response["Items"]
     return make_response(jsonify(
                     message="Data fethced",
                     data=output),
                     200
                 )
+    
+# Update grant
+@app.route("/grants/update",methods = ['POST'])
+#@decorator
+def getGrants():
+    DB =     boto3.resource(
+            'dynamodb')
+    table = DB.Table(grant_table)
+
+    response = table.scan(
+     FilterExpression = 'user_granted = :i',
+     ExpressionAttributeValues = {':i' : ''}
+    )
+    output = response["Items"]
+    return make_response(jsonify(
+                    message="Data fethced",
+                    data=output),
+                    200
+                )    
+
 @app.route("/")
 def home():
     data={"List of users":[{"user1":"Ankhush","User2":"Ganesh"}]}

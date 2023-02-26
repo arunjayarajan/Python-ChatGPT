@@ -1,2 +1,4 @@
 _pycache/
 .venv/
+.env/
+Code/Nausicaa.Green.Initiative.Backend/env/
