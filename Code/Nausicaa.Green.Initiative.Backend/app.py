@@ -9,9 +9,9 @@ from flask_cors import CORS
 
 #Creating Env variables for now
 #Boto3 IAM User creds
-os.environ['AWS_ACCESS_KEY_ID'] = 'AKIAV4K7H6GA2I5LMVHY'
-os.environ['AWS_SECRET_ACCESS_KEY'] = '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'
-os.environ['AWS_DEFAULT_REGION'] = 'us-east-1'
+# os.environ['AWS_ACCESS_KEY_ID'] = 'AKIAV4K7H6GA2I5LMVHY'
+# os.environ['AWS_SECRET_ACCESS_KEY'] = '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'
+# os.environ['AWS_DEFAULT_REGION'] = 'us-east-1'
 
 # DynamoDB Variables
 user_table = "user"
@@ -151,41 +151,83 @@ def createRequest():
 
 # List all grants
 @app.route("/grants",methods = ['GET'])
-#@decorator
+@decorator
 def getGrants():
     DB =     boto3.resource(
             'dynamodb')
     table = DB.Table(grant_table)
 
-    response = table.scan(
-     FilterExpression = 'user_granted = :i',
-     ExpressionAttributeValues = {':i' : ''}
-    )
+    response = table.scan()
     output = response["Items"]
     return make_response(jsonify(
                     message="Data fethced",
                     data=output),
                     200
                 )
-    
-# Update grant
-@app.route("/grants/update",methods = ['POST'])
-#@decorator
-def getGrants():
+
+# List all request for admin
+@app.route("/user_request",methods = ['GET'])
+@decorator
+def getRequests():
     DB =     boto3.resource(
             'dynamodb')
-    table = DB.Table(grant_table)
-
-    response = table.scan(
-     FilterExpression = 'user_granted = :i',
-     ExpressionAttributeValues = {':i' : ''}
-    )
+    req_table = DB.Table(request_table)
+    grt_table = DB.Table(grant_table)
+    response = req_table.scan()
     output = response["Items"]
+    for item in output:
+        grt_response = grt_table.get_item(
+        Key ={"grant_id":int(item["grant_id"]) }
+        )
+        item["grant_desc"]= grt_response["Item"]["desc"]
+        item["grant_name"]= grt_response["Item"]["name"]
+        
     return make_response(jsonify(
                     message="Data fethced",
                     data=output),
                     200
-                )    
+                )
+    
+# Save a new grant request
+@app.route("/user_request",methods = ['PUT'])
+@decorator
+def UpdateRequest():
+    requestJson = request.get_json()
+    request_id = requestJson['request_id']
+    status = requestJson['status']      
+    try:
+        DB = boto3.resource(
+            'dynamodb')   
+        table = DB.Table(request_table)
+        response = table.update_item(
+        Key={"request_id": request_id},
+        UpdateExpression="set #status = :S",
+        ExpressionAttributeNames={
+            "#status": "status",
+        },
+        ExpressionAttributeValues={
+            ":S": status,
+        },
+        ReturnValues="UPDATED_NEW",
+        )
+    except Exception as e:
+        response=[]
+        message="{}".format(e)
+        status=400
+    else:
+        response={
+                'request_id': request_id,
+                'status':status
+            }
+        message="Request Updated Successfully"
+        status=200
+        
+    return make_response(jsonify(
+                        message=message,
+                        data=response),
+                        status
+                    )
+    
 
 @app.route("/")
 def home():
@@ -195,6 +237,7 @@ def home():
                     data=data),
                     200
                 )
+    
         
 if __name__ == "__main__":
     app.run(host='0.0.0.0')
