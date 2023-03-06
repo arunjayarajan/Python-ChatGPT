@@ -1,0 +1,76 @@
+name: Build the Back-end
+
+on: 
+  push:
+    paths:
+      - "Code/Nausicaa.Green.Initiative.Backend/**"
+   
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    name: Build the Back-end
+    defaults: 
+      run:
+        working-directory: Code/Nausicaa.Green.Initiative.Backend
+    steps:
+      
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Self sast-scan
+      uses: AppThreat/sast-scan-action@v1.0.0
+      with:
+        output: backend-reports.html
+        type: python,credscan,depscan
+      env:
+        SCAN_ID: ${{ github.sha }}
+        WORKSPACE: https://github.com/${{ github.repository }}/blob/${{ github.sha }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  
+        
+    - name: Upload scan reports
+      uses: actions/upload-artifact@v2
+      with:
+        name: sast-scan-reports
+        path: backend-reports.html  
+      
+    - name: Set up Python 3.10.7
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.10.7
+
+    - name: Setup Node.js environment
+      uses: actions/setup-node@v3.5.1
+      with:
+        node-version: 16.14.2
+    
+    - id: install-aws-cli
+      uses: unfor19/install-aws-cli-action@v1
+      with:
+        version: 2     # default
+        verbose: false # default
+        arch: amd64    # allowed values: amd64, arm64
+        rootdir: ""    # defaults to "PWD"
+        workdir: ""    # defaults to "PWD/unfor19-awscli"
+        
+    - name: AWS Configure
+      run: |
+        aws configure set aws_access_key_id ${{secrets.AWS_ACCESS_KEY_ID}}  
+        aws configure set aws_secret_access_key ${{secrets.AWS_SECRET_ACCESS_KEY}} 
+        aws configure set region ${{secrets.AWS_REGION}} 
+        aws configure list 
+        
+    - name: Docker Login
+      run: aws ecr get-login-password --region eu-west-1 | docker login --username AWS --password-stdin 404463546753.dkr.ecr.eu-west-1.amazonaws.com
+      
+    - name: Docker build
+      run: docker build -t nausica-backend .
+      
+    - name: Tag and Push Docker Image
+      run: |
+        IMAGE_TAG=$(date +'%Y%m%d%H%M%S')
+        docker tag nausica-backend:latest 404463546753.dkr.ecr.eu-west-1.amazonaws.com/nausica-backend:${IMAGE_TAG}
+        docker push 404463546753.dkr.ecr.eu-west-1.amazonaws.com/nausica-backend:${IMAGE_TAG}
+      
+   
+        
+        
