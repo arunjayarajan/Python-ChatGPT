@@ -13,6 +13,8 @@ import { GrantListComponent } from './grant-list/grant-list.component';
 import { PopupComponent } from './popup/popup.component';
 import { ToastComponent } from './toast/toast.component';
 import { RequestGrantComponent } from './request-grant/request-grant.component';
+import { PendingRequestListComponent } from './pending-request-list/pending-request-list.component';
+import { UpdateRequestGrantComponent } from './update-request-grant/update-request-grant.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { RequestGrantComponent } from './request-grant/request-grant.component';
     GrantListComponent,
     PopupComponent,
     ToastComponent,
-    RequestGrantComponent
+    RequestGrantComponent,
+    PendingRequestListComponent,
+    UpdateRequestGrantComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,57 @@
+<div class="container">
+    <div class="row justify-content-center my-4">
+        <div class="row">
+            <div class="col-md-3">
+                <input type="radio" class="btn-check" name="options" id="optionPending" autocomplete="off"
+                    [disabled]="loading" (change)="filterOnPending($event)" checked>
+                <label class="btn btn-success" for="optionPending">Pending</label>
+                &nbsp;
+                <input type="radio" class="btn-check" name="options" id="optionApprove" autocomplete="off"
+                    [disabled]="loading" (change)="filterOnApproved($event)">
+                <label class="btn btn-primary" for="optionApprove">Approved</label>
+                &nbsp;
+                <input type="radio" class="btn-check" name="options" id="optionRejected" autocomplete="off"
+                    [disabled]="loading" (change)="filterOnRejected($event)">
+                <label class="btn btn-warning" for="optionRejected">Rejected</label>                
+            </div>
+            <div class="col-md-1">
+                <div class="spinner-border text-primary" *ngIf="loading" role="status">
+                    <span class="sr-only"></span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">&nbsp;</div>
+        </div>
+        
+        <div class="accordion" id="requestlists">
+            <div class="accordion-item" *ngFor="let request of requests">
+                <h2 class="accordion-header" id="headingOne">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        [attr.data-bs-target]="'#collapse' + request.request_id" aria-expanded="false"
+                        [attr.aria-controls]="'collapse' + request.request_id">
+                        {{request.grant_name}}
+                    </button>
+                </h2>
+                <div id="collapse{{request.request_id}}" class="accordion-collapse collapse"
+                    aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <div class="row">
+                            <div>{{request.grant_name}}</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1">
+                                <button type="button" (click)="updateRequestShow(request)"
+                                    class="btn btn-success btn-sm">Update</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-popup [data]="applyRequestPop">
+    <app-update-request-grant [request]="selectedRequest"
+        (requestUpdateEmit)="updateRequest($event)"></app-update-request-grant>
+</app-popup>

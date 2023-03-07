@@ -153,7 +153,6 @@ def createRequest():
 
 # List all grants
 @app.route("/grants",methods = ['GET'])
-@decorator
 def getGrants():
     DB =     boto3.resource(
             'dynamodb')
@@ -169,7 +168,7 @@ def getGrants():
 
 # List all request for admin
 @app.route("/user_request",methods = ['GET'])
-# @decorator
+@decorator
 def getRequests():
     args = request.args
     request_status = args.get("status", default="All", type=str)
