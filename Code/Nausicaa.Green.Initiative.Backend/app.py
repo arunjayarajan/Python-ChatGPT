@@ -6,12 +6,13 @@ from functools import wraps
 import boto3
 import os
 from flask_cors import CORS
+from boto3.dynamodb.conditions import Key, Attr
 
 #Creating Env variables for now
 #Boto3 IAM User creds
-# os.environ['AWS_ACCESS_KEY_ID'] = 'AKIAV4K7H6GA2I5LMVHY'
-# os.environ['AWS_SECRET_ACCESS_KEY'] = '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'
-# os.environ['AWS_DEFAULT_REGION'] = 'us-east-1'
+os.environ['AWS_ACCESS_KEY_ID'] = 'AKIAV4K7H6GA2I5LMVHY'
+os.environ['AWS_SECRET_ACCESS_KEY'] = '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'
+os.environ['AWS_DEFAULT_REGION'] = 'us-east-1'
 
 # DynamoDB Variables
 user_table = "user"
@@ -36,6 +37,7 @@ def decorator(takes_a_function):
     def wrapper(*args, **kwargs):
         try:
             authHeader = request.headers.get('Authorization')
+            print(authHeader)
             if authHeader is None:
                 raise ValueError('Could not find Authorization header')
 
@@ -44,7 +46,7 @@ def decorator(takes_a_function):
             'us-east-1',
             userPoolId,
             )
-
+            print(code)
             # Set logged in user here!
             global loggedInUsername
             loggedInUsername = code['username']
@@ -167,20 +169,33 @@ def getGrants():
 
 # List all request for admin
 @app.route("/user_request",methods = ['GET'])
-@decorator
+# @decorator
 def getRequests():
+    args = request.args
+    request_status = args.get("status", default="All", type=str)
     DB =     boto3.resource(
             'dynamodb')
     req_table = DB.Table(request_table)
     grt_table = DB.Table(grant_table)
-    response = req_table.scan()
+    usr_table = DB.Table(user_table)
+    if (request_status == "All"):
+        response = req_table.scan()
+    else:
+        response = req_table.scan(
+        FilterExpression = Attr('status').eq(request_status)
+        )
     output = response["Items"]
     for item in output:
         grt_response = grt_table.get_item(
         Key ={"grant_id":int(item["grant_id"]) }
         )
+        usr_response = usr_table.get_item(
+            Key = {"username":str(item["username"])}
+        )
         item["grant_desc"]= grt_response["Item"]["desc"]
         item["grant_name"]= grt_response["Item"]["name"]
+        item["username"]= usr_response["Item"]["username"]
+        item["email_id"]= usr_response["Item"]["email_id"]
         
     return make_response(jsonify(
                     message="Data fethced",
