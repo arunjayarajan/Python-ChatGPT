@@ -1,0 +1,20 @@
+name: DAST SCANNING
+
+on: 
+  push:
+  pull_request:
+    
+    
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    name: RUN DAST SCAN
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Run HawkScan
+      uses: stackhawk/hawkscan-action@v2.0.1
+      with:
+        apiKey: ${{ secrets.HAWK_API_KEY }}  
+
