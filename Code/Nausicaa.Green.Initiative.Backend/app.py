@@ -10,9 +10,11 @@ from boto3.dynamodb.conditions import Key, Attr
 
 #Creating Env variables for now
 #Boto3 IAM User creds
-os.environ['AWS_ACCESS_KEY_ID'] = 'AKIAV4K7H6GA2I5LMVHY'
-os.environ['AWS_SECRET_ACCESS_KEY'] = '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'
-os.environ['AWS_DEFAULT_REGION'] = 'us-east-1'
+# os.environ['AWS_ACCESS_KEY_ID'] = 'AKIAV4K7H6GA2I5LMVHY'
+# os.environ['AWS_SECRET_ACCESS_KEY'] = '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'
+# os.environ['AWS_DEFAULT_REGION'] = 'us-east-1'
+# ACCESS_KEY= os.getenv('AWS_ACCESS_KEY_ID')
+# SECRET_KEY=os.getenv('AWS_SECRET_ACCESS_KEY')
 
 # DynamoDB Variables
 user_table = "user"
@@ -23,11 +25,6 @@ grant_table = "grant"
 clientId="4c64595titjkevuvjqr7amr88j"
 userPoolId ="us-east-1_HOKPXkW1F"
 
-# Current user
-loggedInUsername = ''
-
-# ACCESS_KEY= os.getenv('AWS_ACCESS_KEY_ID')
-# SECRET_KEY=os.getenv('AWS_SECRET_ACCESS_KEY')
 
 app = Flask(__name__)
 cors = CORS(app, resources={r"/*": {"origins": ["https://atu.tecminal.com", "http://localhost:4200"]}})   # Allow CORS for relevent sources
@@ -40,14 +37,13 @@ def decorator(takes_a_function):
             print(authHeader)
             if authHeader is None:
                 raise ValueError('Could not find Authorization header')
-
             code = cognitojwt.decode(
             request.headers.get('Authorization').split()[1],
             'us-east-1',
             userPoolId,
             )
             print(code)
-            # Set logged in user here!
+            # # Set logged in user here!
             global loggedInUsername
             loggedInUsername = code['username']
 
@@ -65,6 +61,7 @@ def createUser():
     first_name = userJson['first_name']
     last_name = userJson['last_name']
     address = userJson['address']
+    print(loggedInUsername)
     
     try:
         DB = boto3.resource(
@@ -112,6 +109,8 @@ def createRequest():
     amount = requestJson['amount']
     created_date = datetime.now()
     status = 'Pending'
+    print("request id "+request_id)
+    print(created_date)
     
     try:
         DB = boto3.resource(
@@ -169,7 +168,7 @@ def getGrants():
 
 # List all request for admin
 @app.route("/user_request",methods = ['GET'])
-# @decorator
+@decorator
 def getRequests():
     args = request.args
     request_status = args.get("status", default="All", type=str)
@@ -252,6 +251,24 @@ def home():
                     data=data),
                     200
                 )
+
+def generate_jwt():
+    client = boto3.client('cognito-idp')
+    response = client.initiate_auth(
+    ClientId=clientId,
+    AuthFlow='USER_PASSWORD_AUTH',
+    AuthParameters={
+        'USERNAME': 'l00171045@atu.ie',
+        'PASSWORD': 'Bolero#88'
+    }
+    )
+    return response['AuthenticationResult']['AccessToken']
+
+
+
+
+
+
     
         
 if __name__ == "__main__":
