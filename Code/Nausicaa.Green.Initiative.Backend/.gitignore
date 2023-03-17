@@ -1,7 +1,8 @@
 _pycache/
+.pytest_cache/
 .venv/
 .env/
 Code/Nausicaa.Green.Initiative.Backend/venv/
 .devcontainer/
-.coverage
+.coverage/
 .pyest_cache/
