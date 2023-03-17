@@ -263,13 +263,6 @@ def generate_jwt():
     }
     )
     return response['AuthenticationResult']['AccessToken']
-
-
-
-
-
-
-    
         
 if __name__ == "__main__":
     app.run(host='0.0.0.0')
