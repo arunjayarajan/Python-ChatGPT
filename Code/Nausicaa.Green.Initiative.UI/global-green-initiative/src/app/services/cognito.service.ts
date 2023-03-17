@@ -24,6 +24,10 @@ export class CognitoService {
       Auth: environment.cognito,
     });
 
+    Auth.configure({
+      Auth: environment.cognito,
+    });
+
     this.authenticationSubject = new BehaviorSubject<boolean>(false);
   }
 

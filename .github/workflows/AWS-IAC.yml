@@ -1,0 +1,102 @@
+name: DEPLOY AWS RESOURCES
+
+on: 
+  push:
+    paths:
+      - "IAC/**"
+    
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    name: Deploy AWS Resources
+    defaults: 
+      run:
+        working-directory: IAC/grants-website-ecs
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    #- name: Self sast-scan
+    #  uses: AppThreat/sast-scan-action@v1.0.0
+    #  with:
+    #    output: reports
+    #    type: terraform
+
+    #- name: Upload scan reports
+    #  uses: actions/upload-artifact@v1.0.0
+    #  with:
+    #    name: sast-scan-reports
+    #    path: reports 
+        
+    - id: install-aws-cli
+      uses: unfor19/install-aws-cli-action@v1
+      with:
+        version : 2     # default
+        verbose : false # default
+        arch    : amd64    # allowed values: amd64, arm64
+        rootdir : ""    # defaults to "PWD"
+        workdir : ""    # defaults to "PWD/unfor19-awscli"
+
+    - name: AWS Configure
+      run: |
+        aws configure set aws_access_key_id ${{secrets.AWS_ACCESS_KEY_ID}}  
+        aws configure set aws_secret_access_key ${{secrets.AWS_SECRET_ACCESS_KEY}} 
+        aws configure set region ${{secrets.AWS_REGION}} 
+        aws configure list     
+
+     # Install the latest version of Terraform CLI
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v1
+
+    - name: terraform plan
+      run: |
+        terraform init
+        terraform plan
+
+  deploy:
+    runs-on: ubuntu-latest
+    name: Deploy AWS Resources
+    defaults: 
+      run:
+        working-directory: IAC/grants-website-ecs
+    needs: plan    
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Manaul Approval
+      uses: trstringer/manual-approval@v1
+      with:
+        secret    : ${{ github.TOKEN }}
+        approvers :  tonythomas-L00171045,chimezirimugochukwu 
+        minimum-approvals: 1
+        issue-title: "Deploying aws resources via terraform"
+        issue-body: "Please approve or deny the deployment of AWS resources. Approval keywords - (approve, approved, lgtm, yes) "
+        exclude-workflow-initiator-as-approver: false
+
+    - id: install-aws-cli
+      uses: unfor19/install-aws-cli-action@v1
+      with:
+        version : 2     # default
+        verbose : false # default
+        arch    : amd64    # allowed values: amd64, arm64
+        rootdir : ""    # defaults to "PWD"
+        workdir : ""    # defaults to "PWD/unfor19-awscli"
+
+    - name: AWS Configure
+      run: |
+        aws configure set aws_access_key_id ${{secrets.AWS_ACCESS_KEY_ID}}  
+        aws configure set aws_secret_access_key ${{secrets.AWS_SECRET_ACCESS_KEY}} 
+        aws configure set region ${{secrets.AWS_REGION}} 
+        aws configure list     
+
+    # Install the latest version of Terraform CLI
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v1
+
+    - name: terraform apply
+      run: |
+        terraform init
+        terraform apply -auto-approve  
+     # terraform destroy -auto-approve   
+          

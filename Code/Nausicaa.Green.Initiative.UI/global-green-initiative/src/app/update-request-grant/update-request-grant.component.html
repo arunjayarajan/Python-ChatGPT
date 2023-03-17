@@ -1,0 +1,28 @@
+<p>Grant Request</p>
+
+<div class="row g-3">
+    <div class="col-md-12">
+        <label class="form-label">Grant</label>
+        <input type="text" class="form-control" [(ngModel)]="this.request.grant_name" readonly>
+    </div>
+    <div class="col-12">
+        <label class="form-label">Summary</label>
+        <textarea class="form-control" [(ngModel)]="this.request.summary"
+            placeholder="short description about your request" row="3">
+      </textarea>
+    </div>
+    <div class="col-md-6">
+        <label class="form-label">Amount</label>
+        <input type="text" [(ngModel)]="this.request.amount" class="form-control">
+    </div>
+
+    <div class="col-md-6">
+        <label class="form-label">Requested by</label>
+        <input type="text" [(ngModel)]="this.request.email_id" class="form-control">
+    </div>
+
+    <div class="col-12">
+        <button type="submit" class="btn btn-primary" (click)="sendUpdate('Approved')">Approve</button>&nbsp;
+        <button type="submit" class="btn btn-warning" (click)="sendUpdate('Rejected')">Reject</button>
+    </div>
+</div>

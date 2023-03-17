@@ -1,0 +1,20 @@
+# -- stackhawk configuration for Nausicaa --
+app:
+  # -- An applicationId obtained from the StackHawk platform. --
+  applicationId: 1fa3f09e-3c53-4333-89b6-f403d14c239c # (required)
+  # -- The environment for the applicationId defined in the StackHawk platform. --
+  env: Pre-Production # (required)
+  # -- The url of your application to scan --
+  host: https://atu.tecminal.com # (required)
+
+
+# -- Customized Configuration for GraphQL/SOAP/OpenAPI, add here --
+  # Configuration Docs: https://docs.stackhawk.com/hawkscan/configuration/
+
+# -- If Authenticated Scanning is needed, add here --
+  # Authenticated Scanning Docs: https://docs.stackhawk.com/hawkscan/authenticated-scanning.html
+  # Authenticated Scanning Repo: https://github.com/kaakaww/scan-configuration/tree/main/Authentication
+
+# -- Help Section --
+  # Docs: https://docs.stackhawk.com/
+  # Contact Support: support@stackhawk.com

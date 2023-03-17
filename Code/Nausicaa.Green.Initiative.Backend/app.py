@@ -198,6 +198,7 @@ class app:
                 'dynamodb')
         table = DB.Table(grant_table)
 
+
         response = table.scan()
         output = response["Items"]
         return make_response(jsonify(
