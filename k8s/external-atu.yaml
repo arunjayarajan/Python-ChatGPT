@@ -1,0 +1,10 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: nginx
+  namespace: atu
+spec:
+  type: ExternalName
+  externalName: nginx-internal.prometheus.svc.cluster.local
+  ports:
+  - port: 80

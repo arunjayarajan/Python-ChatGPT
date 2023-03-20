@@ -1,0 +1,10 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: jenkins
+  namespace: atu
+spec:
+  type: ExternalName
+  externalName: jenkins-service.jenkins.svc.cluster.local
+  ports:
+  - port: 8080

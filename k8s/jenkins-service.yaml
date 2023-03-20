@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: jenkins-service
+  namespace: jenkins
+spec:
+  selector:
+    app: jenkins-server
+  ports:
+    - protocol: TCP
+      port: 8080 #service
+      targetPort: 8080  #pod

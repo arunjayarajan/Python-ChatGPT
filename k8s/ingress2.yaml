@@ -1,0 +1,49 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: minimal-ingress
+  namespace: atu
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    kubernetes.io/ingress.class: "nginx"
+    #    nginx.ingress.kubernetes.io/rewrite-target: /
+    #nginx.ingress.kubernetes.io/ssl-redirect: "true"
+spec:
+  tls:
+  - hosts:
+    - atu.tecminal.com
+    - backend.tecminal.com
+    - monitor.tecminal.com
+    secretName: echo-tls
+  ingressClassName: nginx
+  rules:
+  - host: "atu.tecminal.com"
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: atu-frontend-service
+            port:
+              number: 80
+  - host: "backend.tecminal.com"
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: atu-backend-service
+            port:
+              number: 80
+  - host: "monitor.tecminal.com"
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: atu-backend-service
+            port:
+              number: 80
