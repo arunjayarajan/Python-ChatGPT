@@ -10,9 +10,10 @@ from boto3.dynamodb.conditions import Key, Attr
 
 #Creating Env variables for now
 #Boto3 IAM User creds
-# os.environ['AWS_ACCESS_KEY_ID'] = 'AKIAV4K7H6GA2I5LMVHY'
-# os.environ['AWS_SECRET_ACCESS_KEY'] = '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'
+os.environ['AWS_ACCESS_KEY_ID'] = 'AKIAV4K7H6GA2I5LMVHY'
+os.environ['AWS_SECRET_ACCESS_KEY'] = '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'
 # os.environ['AWS_DEFAULT_REGION'] = 'eu-west-1'
+os.environ['AWS_DEFAULT_REGION'] = 'us-east-1'
 # ACCESS_KEY= os.getenv('AWS_ACCESS_KEY_ID')
 # SECRET_KEY=os.getenv('AWS_SECRET_ACCESS_KEY')
 
@@ -43,7 +44,6 @@ class app:
         def wrapper(*args, **kwargs):
             try:
                 authHeader = request.headers.get('Authorization')
-                print(authHeader)
                 if authHeader is None:
                     raise ValueError('Could not find Authorization header')
                 code = cognitojwt.decode(
@@ -51,7 +51,6 @@ class app:
                 'us-east-1',
                 userPoolId,
                 )
-                # print(code)
                 # # Set logged in user here!
                 global loggedInUsername
                 loggedInUsername = code['username']
@@ -87,7 +86,6 @@ class app:
         try:
             DB = boto3.resource(
                 'dynamodb')
-            
             table = DB.Table(user_table)
             response = table.put_item(
                 Item={
@@ -118,7 +116,7 @@ class app:
                             data=response),
                             status
                         )
-
+        
     # Save a new grant request
     @app.route("/request",methods = ['POST'])
     @decorator
@@ -142,8 +140,6 @@ class app:
         amount = requestJson['amount']
         created_date = datetime.now()
         status = 'Pending'
-        print("request id "+request_id)
-        print(created_date)
         
         try:
             DB = boto3.resource(
@@ -181,7 +177,7 @@ class app:
                             message=message,
                             data=response),
                             status
-                        )
+                        )   
 
     # List all grants
     @app.route("/grants",methods = ['GET'])
@@ -197,7 +193,6 @@ class app:
         DB =     boto3.resource(
                 'dynamodb')
         table = DB.Table(grant_table)
-
 
         response = table.scan()
         output = response["Items"]
@@ -236,7 +231,7 @@ class app:
         output = response["Items"]
         for item in output:
             grt_response = grt_table.get_item(
-            Key ={"grant_id":int(item["grant_id"]) }
+            Key ={"grant_id":str(item["grant_id"]) }
             )
             usr_response = usr_table.get_item(
                 Key = {"username":str(item["username"])}
@@ -331,7 +326,7 @@ def generate_jwt():
     AuthFlow='USER_PASSWORD_AUTH',
     AuthParameters={
         'USERNAME': 'l00171045@atu.ie',
-        'PASSWORD': 'Bolero#88'
+        'PASSWORD': 'bOLERO#99'
     }
     )
     return response['AuthenticationResult']['AccessToken']
