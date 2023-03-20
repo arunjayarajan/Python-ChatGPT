@@ -1,0 +1,10 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: monitoring-nginx
+  namespace: atu
+spec:
+  type: ExternalName
+  externalName: grafana.monitoring.svc.cluster.local
+  ports:
+  - port: 3000

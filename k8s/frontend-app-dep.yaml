@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: atu-deployment
+  namespace: atu
+  labels:
+    app: atu
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: atu
+  template:
+    metadata:
+      labels:
+        app: atu
+    spec:
+      containers:
+      - name: tony
+        image: tonymathewt/nausicaa
+        ports:
+        - containerPort: 3000
+

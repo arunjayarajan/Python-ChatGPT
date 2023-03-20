@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+ name: my-sa
+ namespace: atu
+ annotations:
+   eks.amazonaws.com/role-arn:  arn:aws:iam::404463546753:role/ATU_DYNAMOBD_ROLE
