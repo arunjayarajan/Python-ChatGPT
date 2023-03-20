@@ -23,6 +23,23 @@ docker push surendrang/nausicaa:latest
 
 docker run -d -p 5000:5000 surendrang/nausicaa:latest
 
+------------------------------------------------------
+
+Generate Automated documentation with sphinx
+
+.\make html 
+
+------------------------------------------------------
+
+SBOM generation
+cyclonedx-py -e -o sbom.xml
+
+OSV check
+osv-scanner --sbom="C:\Drive D\Devops-ATU\VS code Python\FlaskTesting\PROJECT 2\Group2_Nausicaa\Code\Nausicaa.Green.Initiative.Backend\sbom.xml"
+
+
+------------------------------------------------------
+
 #to mount aws directory into docker container
 #not needed as we are using envir variables to get creds
 docker run -v C:/Users/suren/.aws:/root/.aws -d -p 5000:5000 surendrang/nausicaa:latest
