@@ -12,7 +12,7 @@ from boto3.dynamodb.conditions import Key, Attr
 #Boto3 IAM User creds
 # os.environ['AWS_ACCESS_KEY_ID'] = 'AKIAV4K7H6GA2I5LMVHY'
 # os.environ['AWS_SECRET_ACCESS_KEY'] = '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'
-# os.environ['AWS_DEFAULT_REGION'] = 'us-east-1'
+# os.environ['AWS_DEFAULT_REGION'] = 'eu-west-1'
 # ACCESS_KEY= os.getenv('AWS_ACCESS_KEY_ID')
 # SECRET_KEY=os.getenv('AWS_SECRET_ACCESS_KEY')
 
@@ -25,11 +25,11 @@ grant_table = "grant"
 clientId="4c64595titjkevuvjqr7amr88j"
 userPoolId ="us-east-1_HOKPXkW1F"
 
-
 app = Flask(__name__)
 cors = CORS(app, resources={r"/*": {"origins": ["https://atu.tecminal.com", "http://localhost:4200"]}})   # Allow CORS for relevent sources
+
 class app:
-    
+
     def decorator(takes_a_function):
         """The decorator which will be invoked by all methods and check if the jwt generated
         by cognito and sent by client is valid
@@ -51,7 +51,7 @@ class app:
                 'us-east-1',
                 userPoolId,
                 )
-                print(code)
+                # print(code)
                 # # Set logged in user here!
                 global loggedInUsername
                 loggedInUsername = code['username']
@@ -185,7 +185,7 @@ class app:
 
     # List all grants
     @app.route("/grants",methods = ['GET'])
-    @decorator
+    # @decorator
     def getGrants():
         """The endpoint that will be used to fetch all grants from dynamodb grants table 
         Route - /grants
