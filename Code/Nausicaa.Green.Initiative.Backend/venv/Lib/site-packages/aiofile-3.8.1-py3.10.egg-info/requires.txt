@@ -1,0 +1,6 @@
+caio~=0.9.0
+
+[develop]
+aiomisc
+pytest
+pytest-cov

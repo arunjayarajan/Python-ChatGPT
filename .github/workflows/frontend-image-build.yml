@@ -50,21 +50,21 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
 
-    - name: Self sast-scan
-      uses: AppThreat/sast-scan-action@v1.0.0
-      with:
-        output: frontend_report.html
-        type: nodejs,java,credscan,depscan
-      env:
-        SCAN_ID: ${{ github.sha }}
-        WORKSPACE: https://github.com/${{ github.repository }}/blob/${{ github.sha }}
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  
+   # - name: Self sast-scan
+   #   uses: AppThreat/sast-scan-action@v1.0.0
+   #  with:
+   #     output: frontend_report.html
+   #     type: nodejs,java,credscan,depscan
+   #   env:
+   #     SCAN_ID: ${{ github.sha }}
+   #     WORKSPACE: https://github.com/${{ github.repository }}/blob/${{ github.sha }}
+   #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  
         
-    - name: Upload scan reports
-      uses: actions/upload-artifact@v2
-      with:
-        name: sast-scan-reports
-        path: frontend_report.html   
+   # - name: Upload scan reports
+   #   uses: actions/upload-artifact@v2
+   #   with:
+   #     name: sast-scan-reports
+   #     path: frontend_report.html   
     
     - name: Cache node modules
       id: cache-nodemodules

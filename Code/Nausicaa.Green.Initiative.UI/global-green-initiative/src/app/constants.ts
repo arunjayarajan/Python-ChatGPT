@@ -14,4 +14,6 @@ export class API_URLS{
   public static readonly signIn = "signin";
   public static readonly grants = "grants";
   public static readonly request = "request";
+  public static readonly user_request = "user_request";
+  
 }

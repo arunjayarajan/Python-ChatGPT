@@ -1,0 +1,4 @@
+[console_scripts]
+cyclonedx-bom=cyclonedx_py.client:main_deprecated
+cyclonedx-py=cyclonedx_py.client:main
+
