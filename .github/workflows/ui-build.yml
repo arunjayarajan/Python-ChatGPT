@@ -73,7 +73,7 @@ jobs:
       run: docker build -t nausicaa:v1 --force-rm .
       
     - name: Docker Tag
-      run: docker tag nausicaa:v1 tonymathewt/nausicaa:v2
+      run: docker tag nausicaa:v1 tonymathewt/nausicaa:v3
       
     - name: Docker Push
-      run: docker push tonymathewt/nausicaa:v2
+      run: docker push tonymathewt/nausicaa:v3
