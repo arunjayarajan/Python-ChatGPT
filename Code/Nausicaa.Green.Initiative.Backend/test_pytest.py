@@ -1,13 +1,12 @@
 from app import app,generate_jwt # Flask instance of the API
 import json
 from unittest import mock
-from flask import request, jsonify, make_response
-
 
 # from mock import patch
 jwt = generate_jwt()
 bearer_token = "Bearer "+jwt
 
+# app = Flask(__name__)
 
 def test_index_route():
     response = app.test_client().get('/')
@@ -27,7 +26,6 @@ def test_getGrants():
     """
     headers = {"Authorization": bearer_token}
     response = app.test_client().get('/grants',headers = headers)
-    print(response.json)
     assert response.status_code == 200
     data = response.json["data"]
     for x in data:
@@ -35,7 +33,7 @@ def test_getGrants():
         assert isinstance(x["name"], str)
     assert response.json["message"] == "Data fethced"
 
-@mock.patch('app.loggedInUsername', "ToniThomas")    
+# @mock.patch('loggedInUsername', "ToniThomas")    
 def test_createUser():
     headers = {"Authorization": bearer_token, "Content-Type": "application/json"}
     data = {
@@ -49,7 +47,7 @@ def test_createUser():
     data = response.json["data"]
     assert response.json["message"] == "User Created Successfully"
 
-@mock.patch('app.loggedInUsername', "ToniThomas")  
+# @mock.patch('app.loggedInUsername', "ToniThomas")  
 @mock.patch('app.uuid.uuid4')
 def test_createRequest(mock_uuid4):
     mock_uuid4.return_value = '1e3b064d-75e6-4076-8559-2b7b1f3ec6e0'
@@ -60,7 +58,6 @@ def test_createRequest(mock_uuid4):
         "amount": "555"
         }
     response = app.test_client().post('/request',data = json.dumps(data),headers = headers)
-    print(response.json)
     assert response.status_code == 200
     data = response.json["data"]
     assert response.json["message"] == "Request Created Successfully"
@@ -115,7 +112,6 @@ def test_UpdateRequest():
         "status": "grant for education"
         }
     response = app.test_client().put('/user_request',data = json.dumps(data),headers = headers)
-    print(response.json)
     assert response.status_code == 200
     data = response.json["data"]
     assert response.json["message"] == "Request Updated Successfully"

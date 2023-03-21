@@ -44,17 +44,14 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="modules.html">Nausicaa.Green.Initiative.Backend</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">app module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#app.app"><code class="docutils literal notranslate"><span class="pre">app</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#app.app.UpdateRequest"><code class="docutils literal notranslate"><span class="pre">app.UpdateRequest()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#app.app.createRequest"><code class="docutils literal notranslate"><span class="pre">app.createRequest()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#app.app.createUser"><code class="docutils literal notranslate"><span class="pre">app.createUser()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#app.app.decorator"><code class="docutils literal notranslate"><span class="pre">app.decorator()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#app.app.getGrants"><code class="docutils literal notranslate"><span class="pre">app.getGrants()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#app.app.getRequests"><code class="docutils literal notranslate"><span class="pre">app.getRequests()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#app.app.home"><code class="docutils literal notranslate"><span class="pre">app.home()</span></code></a></li>
-</ul>
-</li>
+<li class="toctree-l3"><a class="reference internal" href="#app.UpdateRequest"><code class="docutils literal notranslate"><span class="pre">UpdateRequest()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#app.createRequest"><code class="docutils literal notranslate"><span class="pre">createRequest()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#app.createUser"><code class="docutils literal notranslate"><span class="pre">createUser()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#app.decorator"><code class="docutils literal notranslate"><span class="pre">decorator()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#app.generate_jwt"><code class="docutils literal notranslate"><span class="pre">generate_jwt()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#app.getGrants"><code class="docutils literal notranslate"><span class="pre">getGrants()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#app.getRequests"><code class="docutils literal notranslate"><span class="pre">getRequests()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#app.home"><code class="docutils literal notranslate"><span class="pre">home()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="init.html">init module</a></li>
@@ -90,13 +87,9 @@
              
   <section id="module-app">
 <span id="app-module"></span><h1>app module<a class="headerlink" href="#module-app" title="Permalink to this heading"></a></h1>
-<dl class="py class">
-<dt class="sig sig-object py" id="app.app">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">app.</span></span><span class="sig-name descname"><span class="pre">app</span></span><a class="headerlink" href="#app.app" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<dl class="py method">
-<dt class="sig sig-object py" id="app.app.UpdateRequest">
-<span class="sig-name descname"><span class="pre">UpdateRequest</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.app.UpdateRequest" title="Permalink to this definition"></a></dt>
+<dl class="py function">
+<dt class="sig sig-object py" id="app.UpdateRequest">
+<span class="sig-prename descclassname"><span class="pre">app.</span></span><span class="sig-name descname"><span class="pre">UpdateRequest</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.UpdateRequest" title="Permalink to this definition"></a></dt>
 <dd><p>The endpoint that will be used by admin to update user requests on dynamodb requests table
 Route - /user_requests
 Type - PUT</p>
@@ -110,9 +103,9 @@ Type - PUT</p>
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt class="sig sig-object py" id="app.app.createRequest">
-<span class="sig-name descname"><span class="pre">createRequest</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.app.createRequest" title="Permalink to this definition"></a></dt>
+<dl class="py function">
+<dt class="sig sig-object py" id="app.createRequest">
+<span class="sig-prename descclassname"><span class="pre">app.</span></span><span class="sig-name descname"><span class="pre">createRequest</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.createRequest" title="Permalink to this definition"></a></dt>
 <dd><p>The endpoint that will be used for grant creation and create an entry in dynamodb grants table
 Route - /request
 Type - POST</p>
@@ -127,9 +120,9 @@ Type - POST</p>
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt class="sig sig-object py" id="app.app.createUser">
-<span class="sig-name descname"><span class="pre">createUser</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.app.createUser" title="Permalink to this definition"></a></dt>
+<dl class="py function">
+<dt class="sig sig-object py" id="app.createUser">
+<span class="sig-prename descclassname"><span class="pre">app.</span></span><span class="sig-name descname"><span class="pre">createUser</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.createUser" title="Permalink to this definition"></a></dt>
 <dd><p>The endpoint that will be used for user login and create an entry in dynamodb users table
 Route - /signin
 Type - POST</p>
@@ -145,9 +138,9 @@ Type - POST</p>
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt class="sig sig-object py" id="app.app.decorator">
-<span class="sig-name descname"><span class="pre">decorator</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.app.decorator" title="Permalink to this definition"></a></dt>
+<dl class="py function">
+<dt class="sig sig-object py" id="app.decorator">
+<span class="sig-prename descclassname"><span class="pre">app.</span></span><span class="sig-name descname"><span class="pre">decorator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">takes_a_function</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.decorator" title="Permalink to this definition"></a></dt>
 <dd><p>The decorator which will be invoked by all methods and check if the jwt generated
 by cognito and sent by client is valid</p>
 <dl class="field-list simple">
@@ -163,9 +156,23 @@ by cognito and sent by client is valid</p>
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt class="sig sig-object py" id="app.app.getGrants">
-<span class="sig-name descname"><span class="pre">getGrants</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.app.getGrants" title="Permalink to this definition"></a></dt>
+<dl class="py function">
+<dt class="sig sig-object py" id="app.generate_jwt">
+<span class="sig-prename descclassname"><span class="pre">app.</span></span><span class="sig-name descname"><span class="pre">generate_jwt</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.generate_jwt" title="Permalink to this definition"></a></dt>
+<dd><p>The method is used to generated jwt</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>json_web_token</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>String</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.getGrants">
+<span class="sig-prename descclassname"><span class="pre">app.</span></span><span class="sig-name descname"><span class="pre">getGrants</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.getGrants" title="Permalink to this definition"></a></dt>
 <dd><p>The endpoint that will be used to fetch all grants from dynamodb grants table
 Route - /grants
 Type - GET</p>
@@ -179,9 +186,9 @@ Type - GET</p>
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt class="sig sig-object py" id="app.app.getRequests">
-<span class="sig-name descname"><span class="pre">getRequests</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.app.getRequests" title="Permalink to this definition"></a></dt>
+<dl class="py function">
+<dt class="sig sig-object py" id="app.getRequests">
+<span class="sig-prename descclassname"><span class="pre">app.</span></span><span class="sig-name descname"><span class="pre">getRequests</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.getRequests" title="Permalink to this definition"></a></dt>
 <dd><p>The endpoint that will be used to fetch user requests from dynamodb requests table based on status param
 Route - /user_requests
 Type - GET</p>
@@ -198,29 +205,13 @@ Type - GET</p>
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt class="sig sig-object py" id="app.app.home">
-<span class="sig-name descname"><span class="pre">home</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.app.home" title="Permalink to this definition"></a></dt>
+<dl class="py function">
+<dt class="sig sig-object py" id="app.home">
+<span class="sig-prename descclassname"><span class="pre">app.</span></span><span class="sig-name descname"><span class="pre">home</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.home" title="Permalink to this definition"></a></dt>
 <dd><p>The default route of the app</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>message</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>String</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="app.generate_jwt">
-<span class="sig-prename descclassname"><span class="pre">app.</span></span><span class="sig-name descname"><span class="pre">generate_jwt</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.generate_jwt" title="Permalink to this definition"></a></dt>
-<dd><p>The method is used to generated jwt</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>json_web_token</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>String</p>
