@@ -65,7 +65,7 @@ jobs:
       
     - name: Docker build
       run: |
-        sudo apt install g++
+        sudo apt install -y build-essential
         docker build -t nausica-backend .
       
     - name: Tag and Push Docker Image
