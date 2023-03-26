@@ -114,6 +114,17 @@ jobs:
         IMAGE_TAG=$(date +'%Y%m%d%H%M%S')
         docker tag nausica-trial:latest 404463546753.dkr.ecr.eu-west-1.amazonaws.com/nausica-trial:$IMAGE_TAG
         docker push 404463546753.dkr.ecr.eu-west-1.amazonaws.com/nausica-trial:$IMAGE_TAG
-
+        
+    - name: Docker Login
+      run: docker login -u tonymathewt -p ${{ secrets.dockerlogin }}
+      
+    - name: Docker build
+      run: docker build -t nausicaa:v1 --force-rm .
+      
+    - name: Docker Tag
+      run: docker tag nausicaa:v1 tonymathewt/nausicaa:v3
+      
+    - name: Docker Push
+      run: docker push tonymathewt/nausicaa:v3
    
   

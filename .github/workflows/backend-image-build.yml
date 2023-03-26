@@ -73,3 +73,15 @@ jobs:
         IMAGE_TAG=$(date +'%Y%m%d%H%M%S')
         docker tag nausica-backend:latest 404463546753.dkr.ecr.eu-west-1.amazonaws.com/nausica-backend:${IMAGE_TAG}
         docker push 404463546753.dkr.ecr.eu-west-1.amazonaws.com/nausica-backend:${IMAGE_TAG}
+
+    - name: Docker Login
+      run: docker login -u surendrang -p ${{ secrets.dockerbackend }}
+      
+    - name: Docker build
+      run: docker build -t nausicaa:latest .
+      
+    - name: Docker Tag
+      run: docker tag nausicaa:latest surendrang/nausicaa:latest
+      
+    - name: Docker Push
+      run: docker push surendrang/nausicaa:latest
