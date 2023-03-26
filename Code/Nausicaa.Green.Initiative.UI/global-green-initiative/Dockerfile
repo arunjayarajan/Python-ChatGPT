@@ -14,7 +14,7 @@ RUN touch /var/run/nginx.pid && \
  chown -R www-data:www-data /etc/nginx && \
  chown -R www-data:www-data /usr/share/nginx && \
  chmod 777 -R /tmp && chmod o+t -R /tmp
-##Switch to nginx user
+#Switch to nginx user
 USER www-data
 # Expose required port from nginx config
 EXPOSE 3000

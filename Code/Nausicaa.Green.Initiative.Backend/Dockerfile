@@ -1,4 +1,4 @@
-# syntax=docker/dockerfile:1
+## syntax=docker/dockerfile:1
 
 FROM python:3.12.0a5-slim
 
