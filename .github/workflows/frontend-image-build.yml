@@ -102,18 +102,18 @@ jobs:
         aws configure set region ${{secrets.AWS_REGION}} 
         aws configure list 
       
-    - name: Docker Login
-      run: aws ecr get-login-password --region eu-west-1 | docker login --username AWS --password-stdin 404463546753.dkr.ecr.eu-west-1.amazonaws.com
+#    - name: Docker Login
+#      run: aws ecr get-login-password --region eu-west-1 | docker login --username AWS --password-stdin 404463546753.dkr.ecr.eu-west-1.amazonaws.com
       
-    - name: Build Image
-      run: |
-        docker build -t nausica-trial .
+#    - name: Build Image
+#      run: |
+#        docker build -t nausica-trial .
       
-    - name: Tag and Push Docker Image
-      run: |
-        IMAGE_TAG=$(date +'%Y%m%d%H%M%S')
-        docker tag nausica-trial:latest 404463546753.dkr.ecr.eu-west-1.amazonaws.com/nausica-trial:$IMAGE_TAG
-        docker push 404463546753.dkr.ecr.eu-west-1.amazonaws.com/nausica-trial:$IMAGE_TAG
+#    - name: Tag and Push Docker Image
+#      run: |
+#        IMAGE_TAG=$(date +'%Y%m%d%H%M%S')
+#        docker tag nausica-trial:latest 404463546753.dkr.ecr.eu-west-1.amazonaws.com/nausica-trial:$IMAGE_TAG
+#        docker push 404463546753.dkr.ecr.eu-west-1.amazonaws.com/nausica-trial:$IMAGE_TAG
         
     - name: Docker Login
       run: docker login -u tonymathewt -p ${{ secrets.dockerlogin }}
