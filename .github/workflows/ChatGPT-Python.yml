@@ -1,22 +1,32 @@
-# Python project build pipeline
-# Build a Python project using pip and pytest test
+# YAML pipeline for Python project in GitHub
 
-trigger:
-- main
+name: Python Build
 
-pool:
-  vmImage: 'ubuntu-latest'
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 
-steps:
-- task: UsePythonVersion@0
-  inputs:
-    versionSpec: '3.x' # Set the version of Python to use
+jobs:
+  build:
+    runs-on: ubuntu-latest
 
-- script: |
-    python -m pip install --upgrade pip
-    pip install -r requirements.txt
-  displayName: 'Install dependencies'
+    steps:
+    - uses: actions/checkout@v2
 
-- script: |
-    pytest tests/
-  displayName: 'Run tests'
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.9'
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Run tests
+      run: |
+        pytest tests/
