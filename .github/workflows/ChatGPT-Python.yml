@@ -30,6 +30,6 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r packages.txt
 
-    - name: Run tests
-      run: |
-        pytest tests/
+    - name:
+        python -m coverage run -m pytest
+        python -m coverage report 
