@@ -1,0 +1,22 @@
+# Python project build pipeline
+# Build a Python project using pip and pytest
+
+trigger:
+- main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- task: UsePythonVersion@0
+  inputs:
+    versionSpec: '3.x' # Set the version of Python to use
+
+- script: |
+    python -m pip install --upgrade pip
+    pip install -r requirements.txt
+  displayName: 'Install dependencies'
+
+- script: |
+    pytest tests/
+  displayName: 'Run tests'
